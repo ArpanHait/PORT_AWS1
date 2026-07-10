@@ -1,0 +1,8 @@
+First start the server:
+
+cd "C:\ALL CODE\PORT_AWS1"
+npm run dev -- --port 5173
+
+Then open Chrome:
+
+Start-Process "C:\Program Files\Google\Chrome\Application\chrome.exe" "http://localhost:5173"
