@@ -37,7 +37,7 @@ A clean, cloud-engineer-styled personal portfolio website for **Arpan Hait**, bu
 
 | Project                              | Stack                                        | Highlight                  |
 | ------------------------------------ | -------------------------------------------- | -------------------------- |
-| **To-Do Task Manager**               | Django · Python · HTML/CSS/JS                | 8 CRUD views               |
+| **Krishi Mitra Voice Agent**        | Python · FastAPI · STT/LLM · React · WebSockets | Real-time Voice Stream     |
 | **Deepfake Detection Framework**     | React · FastAPI · MTCNN · EfficientNet-B0    | 5 REST endpoints           |
 | **Industrial AI Anomaly Detection**  | Next.js · TypeScript · FastAPI · Scikit-Learn| WebSocket telemetry        |
 | **AI Autocorrect Tool**              | JavaScript · Netlify Functions               | < 100 ms latency           |

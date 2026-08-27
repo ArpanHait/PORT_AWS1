@@ -44,15 +44,15 @@ const stats = [
 
 const projects = [
   {
-    name: 'To-Do Task Manager',
-    status: 'Source available',
-    repo: 'https://github.com/ArpanHait/TO_DO',
-    stack: ['Django', 'Python', 'HTML', 'CSS', 'JavaScript'],
+    name: 'Krishi Mitra Voice Agent',
+    status: 'Voice AI System',
+    repo: 'https://github.com/ArpanHait/KRISHI_MITRA',
+    stack: ['Python', 'FastAPI', 'Speech-to-Text', 'LLM', 'React', 'WebSockets'],
     summary:
-      'Django task platform using MVT architecture, relational models, custom schema fields, secure authentication, and task CRUD flows.',
+      'Multilingual AI voice assistant tailored for farmers, enabling real-time voice interactions for crop advisories, weather forecasting, and market price queries.',
     impact:
-      'Improved task tracking efficiency by 25% by reducing layout shifts and optimizing behavior during database operations.',
-    signal: '8 CRUD views',
+      'Reduced query resolution latency with low-latency audio streaming and simplified voice-first access for non-technical users.',
+    signal: 'Real-time Voice Stream',
   },
   {
     name: 'Deepfake Detection Framework',
@@ -180,7 +180,10 @@ function Header() {
 function Hero() {
   return (
     <section className="hero" id="top" aria-labelledby="hero-title">
-      <div className="hero-backdrop" aria-hidden="true" />
+      <div className="hero-backdrop" aria-label="Arpan Hait profile picture">
+        <div className="hero-avatar-ring" aria-hidden="true" />
+        <img src="/assets/MY_IMAGE.jpg" alt="Arpan Hait" className="hero-avatar-img" />
+      </div>
       <div className="hero-content">
         <p className="eyebrow">
           <Radio size={15} aria-hidden="true" />
@@ -189,7 +192,7 @@ function Hero() {
         <h1 id="hero-title">Arpan Hait</h1>
         <p className="hero-role">Full Stack Developer</p>
         <p className="hero-copy">
-          I build clean, API-driven web systems across React, Django, FastAPI, and cloud-ready deployment workflows, with a focus on practical interfaces that move data fast and stay usable.
+          I build clean, full-stack web applications and AI-powered systems across React, Django, FastAPI, and cloud-ready deployment workflows, with a focus on practical interfaces that move data fast and stay usable.
         </p>
         <div className="hero-actions" aria-label="Primary actions">
           <a className="primary-action" href="#projects">
