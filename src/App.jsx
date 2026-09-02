@@ -177,12 +177,61 @@ function Header() {
   );
 }
 
+const innerOrbit = [
+  { icon: Code2, label: 'React', color: '#60d5d3' },
+  { icon: Server, label: 'FastAPI', color: '#7bd88f' },
+  { icon: Database, label: 'Database', color: '#e9b65d' },
+  { icon: TerminalSquare, label: 'Python', color: '#ff766d' },
+];
+
+const outerOrbit = [
+  { icon: Cloud, label: 'AWS', color: '#e9b65d' },
+  { icon: Workflow, label: 'APIs', color: '#60d5d3' },
+  { icon: GitBranch, label: 'Git', color: '#ff766d' },
+  { icon: Braces, label: 'Core CS', color: '#7bd88f' },
+];
+
 function Hero() {
   return (
     <section className="hero" id="top" aria-labelledby="hero-title">
-      <div className="hero-backdrop" aria-label="Arpan Hait profile picture">
-        <div className="hero-avatar-ring" aria-hidden="true" />
-        <img src="/assets/MY_IMAGE.jpg" alt="Arpan Hait" className="hero-avatar-img" />
+      <div className="hero-orbit-stage" aria-label="Arpan Hait profile and 3D tech orbit">
+        {/* Outer 3D Orbit Track */}
+        <div className="orbit-track outer-track">
+          <div className="orbit-glow-ring" />
+          <div className="orbit-rotator outer-rotator">
+            {outerOrbit.map(({ icon: Icon, label, color }, idx) => (
+              <div className={`orbit-planet planet-outer-${idx}`} key={label}>
+                <div className="orbit-badge" style={{ '--accent': color }}>
+                  <Icon size={17} aria-hidden="true" />
+                  <span className="orbit-tooltip">{label}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Inner 3D Orbit Track */}
+        <div className="orbit-track inner-track">
+          <div className="orbit-glow-ring" />
+          <div className="orbit-rotator inner-rotator">
+            {innerOrbit.map(({ icon: Icon, label, color }, idx) => (
+              <div className={`orbit-planet planet-inner-${idx}`} key={label}>
+                <div className="orbit-badge" style={{ '--accent': color }}>
+                  <Icon size={16} aria-hidden="true" />
+                  <span className="orbit-tooltip">{label}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Central Profile Avatar */}
+        <div className="hero-avatar-frame">
+          <div className="hero-avatar-core">
+            <img src="/assets/MY_IMAGE.jpg" alt="Arpan Hait" className="hero-avatar-img" />
+          </div>
+          <div className="hero-avatar-pulse" aria-hidden="true" />
+        </div>
       </div>
       <div className="hero-content">
         <p className="eyebrow">
