@@ -202,7 +202,7 @@ a {
 }
 
 .hero-avatar-frame:hover {
-  transform: translate3d(0, -4px, 15px) scale(1.02);
+  transform: translate3d(0, -4px, 10px) scale(1.02);
   border-color: rgba(96, 213, 211, 0.9);
   box-shadow:
     0 0 70px rgba(96, 213, 211, 0.45),
@@ -252,7 +252,7 @@ a {
   }
 }
 
-/* 3D Orbit Tracks */
+/* 3D Orbit Tracks with Gyroscopic Motion */
 .orbit-track {
   position: absolute;
   border-radius: 50%;
@@ -261,12 +261,14 @@ a {
   display: flex;
   align-items: center;
   justify-content: center;
+  will-change: transform;
 }
 
 .orbit-track.inner-track {
   width: 132%;
   height: 132%;
   transform: rotateX(68deg) rotateY(-18deg) rotateZ(10deg);
+  animation: gyro-inner 14s ease-in-out infinite alternate;
   z-index: 6;
 }
 
@@ -274,25 +276,102 @@ a {
   width: 168%;
   height: 168%;
   transform: rotateX(68deg) rotateY(18deg) rotateZ(-12deg);
+  animation: gyro-outer 18s ease-in-out infinite alternate;
   z-index: 4;
 }
 
+@keyframes gyro-inner {
+  0% {
+    transform: rotateX(64deg) rotateY(-22deg) rotateZ(6deg);
+  }
+  50% {
+    transform: rotateX(72deg) rotateY(-14deg) rotateZ(16deg);
+  }
+  100% {
+    transform: rotateX(66deg) rotateY(-20deg) rotateZ(8deg);
+  }
+}
+
+@keyframes gyro-outer {
+  0% {
+    transform: rotateX(72deg) rotateY(14deg) rotateZ(-16deg);
+  }
+  50% {
+    transform: rotateX(64deg) rotateY(22deg) rotateZ(-6deg);
+  }
+  100% {
+    transform: rotateX(70deg) rotateY(16deg) rotateZ(-14deg);
+  }
+}
+
+/* Streaming Energy Dashed Rings with Moving Comet Beam */
 .orbit-glow-ring {
   position: absolute;
   inset: 0;
   border-radius: 50%;
-  border: 1.5px dashed rgba(96, 213, 211, 0.28);
+  border: 1.5px dashed rgba(96, 213, 211, 0.35);
   box-shadow:
-    0 0 20px rgba(96, 213, 211, 0.12),
-    inset 0 0 20px rgba(96, 213, 211, 0.08);
+    0 0 24px rgba(96, 213, 211, 0.18),
+    inset 0 0 24px rgba(96, 213, 211, 0.1);
   pointer-events: none;
+  will-change: transform;
+}
+
+.inner-track .orbit-glow-ring {
+  animation: stream-flow-cw 12s linear infinite;
 }
 
 .outer-track .orbit-glow-ring {
-  border-color: rgba(123, 216, 143, 0.24);
+  border-color: rgba(123, 216, 143, 0.3);
   box-shadow:
-    0 0 24px rgba(123, 216, 143, 0.1),
-    inset 0 0 24px rgba(123, 216, 143, 0.06);
+    0 0 28px rgba(123, 216, 143, 0.16),
+    inset 0 0 28px rgba(123, 216, 143, 0.08);
+  animation: stream-flow-ccw 16s linear infinite;
+}
+
+.orbit-glow-ring::after {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: 50%;
+  background: conic-gradient(
+    from 0deg,
+    rgba(96, 213, 211, 0.85) 0deg,
+    rgba(96, 213, 211, 0.25) 45deg,
+    transparent 130deg,
+    transparent 360deg
+  );
+  -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #fff calc(100% - 2px));
+  mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #fff calc(100% - 2px));
+  pointer-events: none;
+}
+
+.outer-track .orbit-glow-ring::after {
+  background: conic-gradient(
+    from 0deg,
+    rgba(123, 216, 143, 0.85) 0deg,
+    rgba(233, 182, 93, 0.35) 50deg,
+    transparent 140deg,
+    transparent 360deg
+  );
+}
+
+@keyframes stream-flow-cw {
+  from {
+    transform: rotateZ(0deg);
+  }
+  to {
+    transform: rotateZ(360deg);
+  }
+}
+
+@keyframes stream-flow-ccw {
+  from {
+    transform: rotateZ(360deg);
+  }
+  to {
+    transform: rotateZ(0deg);
+  }
 }
 
 /* 120 FPS GPU-Accelerated Orbit Rotators */
@@ -314,6 +393,8 @@ a {
 }
 
 .hero-orbit-stage:has(.orbit-badge:hover) .orbit-rotator,
+.hero-orbit-stage:has(.orbit-badge:hover) .orbit-track,
+.hero-orbit-stage:has(.orbit-badge:hover) .orbit-glow-ring,
 .hero-orbit-stage:has(.orbit-badge:hover) .orbit-badge {
   animation-play-state: paused;
 }
